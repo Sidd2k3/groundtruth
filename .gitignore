@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.env
+qdrant_data/
+qdrant_eval/
+eval/results/cache.json
+.pytest_cache/

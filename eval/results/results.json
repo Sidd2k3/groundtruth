@@ -1,0 +1,105 @@
+{
+  "verifier": {
+    "n": 40,
+    "accuracy": 0.925,
+    "false_accept_rate": 0.0,
+    "per_label": {
+      "supported": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "unsupported": {
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058
+      },
+      "contradicted": {
+        "precision": 0.8235294117647058,
+        "recall": 1.0,
+        "f1": 0.9032258064516129
+      }
+    },
+    "confusion": {
+      "supported": {
+        "supported": 16,
+        "unsupported": 0,
+        "contradicted": 0
+      },
+      "unsupported": {
+        "supported": 0,
+        "unsupported": 7,
+        "contradicted": 3
+      },
+      "contradicted": {
+        "supported": 0,
+        "unsupported": 0,
+        "contradicted": 14
+      }
+    },
+    "errors": [
+      {
+        "claim": "Annual leave can be cashed out at the end of each year.",
+        "gold": "unsupported",
+        "pred": "contradicted",
+        "entail": 0.0053,
+        "contradict": 0.8535
+      },
+      {
+        "claim": "The company provides YubiKeys to every employee.",
+        "gold": "unsupported",
+        "pred": "contradicted",
+        "entail": 0.0004,
+        "contradict": 0.9954
+      },
+      {
+        "claim": "The home office allowance is renewed every two years.",
+        "gold": "unsupported",
+        "pred": "contradicted",
+        "entail": 0.0003,
+        "contradict": 0.9969
+      }
+    ]
+  },
+  "config": {
+    "chunks": 29,
+    "llm": "llama-3.3-70b-versatile",
+    "judge": "llama-3.3-70b-versatile",
+    "n_answerable": 32,
+    "n_unanswerable": 12
+  },
+  "retrieval": {
+    "bm25": {
+      "recall@1": 0.78125,
+      "recall@3": 0.875,
+      "recall@5": 0.875,
+      "recall@10": 0.9375,
+      "mrr": 0.8221726190476191,
+      "ms_per_query": 0.12824478108086623
+    },
+    "dense": {
+      "recall@1": 0.84375,
+      "recall@3": 0.9375,
+      "recall@5": 0.96875,
+      "recall@10": 1.0,
+      "mrr": 0.90234375,
+      "ms_per_query": 5.832777343584894
+    },
+    "hybrid": {
+      "recall@1": 0.78125,
+      "recall@3": 0.90625,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "mrr": 0.865625,
+      "ms_per_query": 5.9374947809374135
+    },
+    "hybrid_rerank": {
+      "recall@1": 0.875,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "mrr": 0.9375,
+      "ms_per_query": 350.076240906219
+    }
+  }
+}

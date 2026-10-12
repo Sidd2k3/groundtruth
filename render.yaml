@@ -1,0 +1,16 @@
+# Render blueprint for the API. Note: the free instance has 512 MB RAM, which is too little for
+# torch + three transformer models; use the Starter plan (2 GB) or deploy the same Dockerfile to a
+# free Hugging Face Docker Space (16 GB RAM) instead — see README "Deployment".
+services:
+  - type: web
+    name: groundtruth-api
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false

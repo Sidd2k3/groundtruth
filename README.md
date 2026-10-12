@@ -5,7 +5,7 @@ answer is checked against the source passages with an NLI model and labelled **s
 **unsupported** or **contradicted**, with the exact evidence it was checked against. Answers whose
 groundedness falls below a threshold are trimmed, flagged, or refused instead of being shown as fact.
 
-Everything is free: Groq (Llama 3.3 70B), Qdrant, open-source local models, FastAPI, Streamlit.
+Everything is free: Groq (gpt-oss-120b), Qdrant, open-source local models, FastAPI, Streamlit.
 
 ```
 question
@@ -18,7 +18,7 @@ question
    │  retrieval gate: best rerank score too low? ──► refuse (no LLM call)
    ▼
 ┌──────────────┐
-│  Generation  │  Groq · Llama 3.3 70B · "cite [n] after every sentence, or say INSUFFICIENT_CONTEXT"
+│  Generation  │  Groq · gpt-oss-120b · "cite [n] after every sentence, or say INSUFFICIENT_CONTEXT"
 └──────────────┘
    │
    ▼

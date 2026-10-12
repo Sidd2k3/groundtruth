@@ -9,9 +9,11 @@ class Settings(BaseSettings):
 
     # --- LLM (Groq) ---
     groq_api_key: str = ""
-    groq_model: str = "llama-3.3-70b-versatile"
+    # Groq retired llama-3.3-70b-versatile on its free tier (Aug 2026); gpt-oss-120b is its recommended replacement.
+    groq_model: str = "openai/gpt-oss-120b"
     llm_temperature: float = 0.0
-    judge_model: str = "llama-3.3-70b-versatile"   # eval only; a different model family reduces self-preference bias
+    reasoning_effort: str = "low"   # for reasoning models (gpt-oss, qwen3): low keeps latency and token use down
+    judge_model: str = "openai/gpt-oss-120b"   # eval only; a different model family reduces self-preference bias
 
     # --- Vector store (Qdrant) ---
     # Leave qdrant_url empty to use embedded local mode (data stored in qdrant_path).

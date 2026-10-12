@@ -12,6 +12,8 @@ from pydantic import BaseModel, Field
 
 from groundtruth.config import get_settings
 from groundtruth.ingest import SUPPORTED, chunk_file
+from groq import APIStatusError
+
 from groundtruth.llm import LLMNotConfigured
 from groundtruth.models import embedder, nli, reranker
 from groundtruth.pipeline import answer_question
@@ -114,3 +116,6 @@ def ask(req: AskRequest):
         return answer_question(get_store(), req.question, verify=req.verify, mode=req.mode).to_dict()
     except LLMNotConfigured as e:
         raise HTTPException(503, str(e))
+    except APIStatusError as e:  # bad key, retired model, rate limit...
+        msg = e.body.get("error", {}).get("message") if isinstance(e.body, dict) else None
+        raise HTTPException(502, f"Groq API error {e.status_code} for model '{get_settings().groq_model}': {msg or e}")
